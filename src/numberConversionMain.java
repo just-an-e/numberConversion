@@ -7,8 +7,10 @@ public class numberConversionMain {
     //No Extra
     public static void main(String[] args) {
         Scanner theScanner = new Scanner(System.in);
+        numberConverter theConverter = new numberConverter();
 
-        String sbase, cbase, number;
+
+        String sbase, cbase, number = "";
 
         do {
             do {
@@ -18,10 +20,10 @@ public class numberConversionMain {
             while (!sbase.equalsIgnoreCase("b") && !sbase.equalsIgnoreCase("bcd") && !sbase.equalsIgnoreCase("d") && !sbase.equalsIgnoreCase("h"));
 
             do {
-                System.out.println("Enter what base you are starting with. (b/h/d/bcd) ");
+                System.out.println("Enter what base you are converting to. (b/h/d/bcd) ");
                 cbase = theScanner.next();
             }
-            while (!sbase.equalsIgnoreCase("b") && !sbase.equalsIgnoreCase("bcd") && !sbase.equalsIgnoreCase("d") && !sbase.equalsIgnoreCase("h"));
+            while ((!cbase.equalsIgnoreCase("b") && !cbase.equalsIgnoreCase("bcd") && !cbase.equalsIgnoreCase("d") && !cbase.equalsIgnoreCase("h") && !sbase.equals(cbase)));
 
             if (sbase.equalsIgnoreCase("b")) {
                 do {
@@ -30,13 +32,13 @@ public class numberConversionMain {
                 }
                 while(binaryCheck(number));
 
-                if (sbase.equalsIgnoreCase("h")) {
-                    do {
-                        System.out.println("Enter a hexadecimal number");
-                        number = theScanner.next();
-                    }
-                    while(binaryCheck(number));
+                if (cbase.equalsIgnoreCase("h")) {
+
+                    number = theConverter.decTo(cbase, Integer.toString(theConverter.toDec(sbase, number)));
+
                 } else if (sbase.equalsIgnoreCase("d")) {
+
+                    number = Integer.toString(theConverter.toDec(sbase, number));
 
                 } else {
 
@@ -49,6 +51,8 @@ public class numberConversionMain {
             } else {
 
             }
+
+            System.out.println(number);
         }
         while(!sbase.equals("q"));
     }
@@ -64,12 +68,24 @@ public class numberConversionMain {
 
         return isBinary;
     }
+    public static boolean decCheck(String number){
+
+        boolean isBinary = true;
+
+        for(int i = 0; i < number.length(); i++){
+            if(number.charAt(i) != '1' || number.charAt(i) != '0' || number.charAt(i) != '2' || number.charAt(i) != '3' || number.charAt(i) != '4' || number.charAt(i) != '6' || number.charAt(i) != '7' || number.charAt(i) != '8' || number.charAt(i) != '9'){
+                isBinary = false;
+            }
+        }
+
+        return isBinary;
+    }
     public static boolean hexCheck(String number){
 
         boolean isHex = true;
 
         for(int i = 0; i < number.length(); i++){
-            if(number.charAt(i) != '1' || number.charAt(i) != '0'){
+            if(number.charAt(i) != '1' || number.charAt(i) != '0' || number.charAt(i) != '2' || number.charAt(i) != '3' || number.charAt(i) != '4' || number.charAt(i) != '6' || number.charAt(i) != '7' || number.charAt(i) != '8' || number.charAt(i) != '9' || number.charAt(i) != 'A' || number.charAt(i) != 'B' || number.charAt(i) != 'C' || number.charAt(i) != 'D' || number.charAt(i) != 'E' || number.charAt(i) != 'F'){
                 isHex = false;
             }
         }

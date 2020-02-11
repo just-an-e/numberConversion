@@ -1,14 +1,23 @@
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class numberConverter {
     public numberConverter(){
 
     }
-    public int toDec (int base, String number){
+    public int toDec (String baseinput, String number){
         Scanner theScanner = new Scanner(System.in);
         char thing;
-        int length, multiplier, digit = 0, answer, sum = 0;
+        int length, multiplier, digit = 0, answer, sum = 0, base;
         double x = 0, place;
+
+        if(baseinput.equalsIgnoreCase("b")){
+            base = 2;
+        }
+        else{
+            base = 16;
+        }
 
         length = number.length() - 1;
 
@@ -115,35 +124,34 @@ public class numberConverter {
             }
             answer = digit * multiplier;
 
-            System.out.println("The digit is " + digit);
-            System.out.println("The multiplier is " + multiplier);
-            System.out.println("The answer is " + answer);
-            System.out.println("");
-
             sum = sum + answer;
 
             x++;
         }
 
-        System.out.println("The final conversion is " + sum);
-
         return sum;
     }
-    public String decTo(int base, int num) {
-        int answer, remander, x, y;
+    public String decTo(String baseinput, String num) {
+        int answer, remander, x, y, base;
         String result = "";
         Scanner theScanner = new Scanner(System.in);
+
+        if(baseinput.equalsIgnoreCase("b")){
+            base = 2;
+        }
+        else{
+            base = 16;
+        }
 
 
         y = base; //base you are converting to
 
-        x = num; //number you are converting
+        x = parseInt(num); //number you are converting
 
         do
         {
             answer = x / y;
             remander = x % y;
-            System.out.println("Remainder is " + remander);
             x = answer;
             switch(remander)
             {
