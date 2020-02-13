@@ -1,3 +1,6 @@
+import com.sun.prism.shader.Solid_ImagePattern_Loader;
+import sun.awt.geom.AreaOp;
+
 import java.util.Scanner;
 
 public class numberConversionMain {
@@ -34,11 +37,12 @@ public class numberConversionMain {
 
                 if (cbase.equalsIgnoreCase("h")) {
 
-                    number = theConverter.decTo(cbase, Integer.toString(theConverter.toDec(sbase, number)));
+                    number = theConverter.decTo(cbase, theConverter.toDec(sbase, number));
 
-                } else if (sbase.equalsIgnoreCase("d")) {
+                } else if (cbase.equalsIgnoreCase("d")) {
 
-                    number = Integer.toString(theConverter.toDec(sbase, number));
+                    number = theConverter.toDec(sbase, number);
+
 
                 } else {
 
@@ -58,11 +62,11 @@ public class numberConversionMain {
     }
     public static boolean binaryCheck(String number){
 
-        boolean isBinary = true;
+        boolean isBinary = false;
 
         for(int i = 0; i < number.length(); i++){
-            if(number.charAt(i) != '1' || number.charAt(i) != '0'){
-                isBinary = false;
+            if(!((number.charAt(i) == '1') || (number.charAt(i) == '0'))){
+                isBinary = true;
             }
         }
 
@@ -70,11 +74,11 @@ public class numberConversionMain {
     }
     public static boolean decCheck(String number){
 
-        boolean isBinary = true;
+        boolean isBinary = false;
 
         for(int i = 0; i < number.length(); i++){
-            if(number.charAt(i) != '1' || number.charAt(i) != '0' || number.charAt(i) != '2' || number.charAt(i) != '3' || number.charAt(i) != '4' || number.charAt(i) != '6' || number.charAt(i) != '7' || number.charAt(i) != '8' || number.charAt(i) != '9'){
-                isBinary = false;
+            if (!((number.charAt(i) != '1') || (number.charAt(i) != '0') || (number.charAt(i) != '2') || (number.charAt(i) != '3') || (number.charAt(i) != '4') || (number.charAt(i) != '6') || (number.charAt(i) != '7') || (number.charAt(i) != '8') || (number.charAt(i) != '9'))) {
+                isBinary = true;
             }
         }
 
@@ -82,11 +86,11 @@ public class numberConversionMain {
     }
     public static boolean hexCheck(String number){
 
-        boolean isHex = true;
+        boolean isHex = false;
 
         for(int i = 0; i < number.length(); i++){
-            if(number.charAt(i) != '1' || number.charAt(i) != '0' || number.charAt(i) != '2' || number.charAt(i) != '3' || number.charAt(i) != '4' || number.charAt(i) != '6' || number.charAt(i) != '7' || number.charAt(i) != '8' || number.charAt(i) != '9' || number.charAt(i) != 'A' || number.charAt(i) != 'B' || number.charAt(i) != 'C' || number.charAt(i) != 'D' || number.charAt(i) != 'E' || number.charAt(i) != 'F'){
-                isHex = false;
+            if(!((number.charAt(i) != '1') || (number.charAt(i) != '0') || (number.charAt(i) != '2') || (number.charAt(i) != '3') || (number.charAt(i) != '4') || (number.charAt(i) != '6') || (number.charAt(i) != '7') || (number.charAt(i) != '8') || (number.charAt(i) != '9') || (number.charAt(i) != 'A') || (number.charAt(i) != 'B') || (number.charAt(i) != 'C') || (number.charAt(i) != 'D') || (number.charAt(i) != 'E') || (number.charAt(i) != 'F'))){
+                isHex = true;
             }
         }
 

@@ -6,11 +6,11 @@ public class numberConverter {
     public numberConverter(){
 
     }
-    public int toDec (String baseinput, String number){
-        Scanner theScanner = new Scanner(System.in);
+    public String toDec (String baseinput, String number){
         char thing;
-        int length, multiplier, digit = 0, answer, sum = 0, base;
+        int length, multiplier, digit = 0, answer, base, sum = 0, decplace = Integer.parseInt(null), i;
         double x = 0, place;
+        String sumstring = "";
 
         if(baseinput.equalsIgnoreCase("b")){
             base = 2;
@@ -19,9 +19,13 @@ public class numberConverter {
             base = 16;
         }
 
+        if(number.indexOf('.') != -1){
+            x = 0 - number.substring(number.charAt(number.indexOf('.'))).length();
+        }
+
         length = number.length() - 1;
 
-        for(int i = length; i >= 0; i--)
+        for(i = length; i >= 0; i--)
         {
             thing = number.charAt(i);
             switch(thing)
@@ -112,7 +116,12 @@ public class numberConverter {
                     break;
                 }
             }
+            if(thing == '.'){
 
+                decplace = i;
+
+                break;
+            }
             if(x == 0)
             {
                 multiplier = 1;
@@ -122,6 +131,7 @@ public class numberConverter {
                 place = Math.pow(base, x);
                 multiplier = (int)place;
             }
+
             answer = digit * multiplier;
 
             sum = sum + answer;
@@ -129,7 +139,13 @@ public class numberConverter {
             x++;
         }
 
-        return sum;
+        if(true){//CHANGE THIS LATER! THIS SHOULD BE A CONDITION TO CHECK IF DECPLACE HAS A VALUE! THEN EXECUTE CODE FOR CONVERTING THE DECIMAL PART OF THE floating point number to decimal. 
+
+        }
+
+        sumstring = Integer.toString(sum);
+
+        return sumstring;
     }
     public String decTo(String baseinput, String num) {
         int answer, remander, x, y, base;
