@@ -65,7 +65,7 @@ public class numberConversionMain {
         boolean isBinary = false;
 
         for(int i = 0; i < number.length(); i++){
-            if(!((number.charAt(i) == '1') || (number.charAt(i) == '0'))){
+            if(!((number.charAt(i) == '1') || (number.charAt(i) == '0')|| (number.charAt(i) == '.'))){
                 isBinary = true;
             }
         }
